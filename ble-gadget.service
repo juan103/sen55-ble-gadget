@@ -1,0 +1,16 @@
+[Unit]
+Description=Sensirion BLE Gadget Service
+After=bluetooth.target dbus.service
+Wants=bluetooth.target
+
+[Service]
+Type=simple
+User=arduino
+ExecStart=/usr/bin/python3 -u /home/arduino/ble_service.py
+Restart=on-failure
+RestartSec=5
+StandardOutput=append:/home/arduino/ble_service.log
+StandardError=append:/home/arduino/ble_service.log
+
+[Install]
+WantedBy=multi-user.target
